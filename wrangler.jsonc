@@ -1,0 +1,14 @@
+{
+	"$schema":"node_modules/wrangler/config-schema.json",
+	"name":"frag",
+	"compatibility_date":"2026-04-30",
+	"build":{
+		"command":"bun build.mjs",
+		"watch_dir":["src","build.mjs","index.tmpl.html","frag.tmpl.html"]
+	},
+	"routes": [
+		{"pattern":"mcbeeringi.dev/frag/*","zone_name":"mcbeeringi.dev"},
+		{"pattern":"www.mcbeeringi.dev/frag/*","zone_name":"mcbeeringi.dev"}
+	],
+	"assets":{"directory":"./dst"}
+}
