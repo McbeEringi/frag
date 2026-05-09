@@ -22,7 +22,7 @@ heading=(n=1,m=n,{
 ].join('|'),'mg'),
 tmpl=await Bun.file(root('frag.tmpl.html')).text(),
 frag=await Promise.all(
-	(new Bun.Glob('**/*.md')).scanSync({cwd:root(dir.src)})[Symbol.iterator]().map(async w=>(
+	(await Bun.$`rm -rf ${root(dir.dst)}`,new Bun.Glob('**/*.md')).scanSync({cwd:root(dir.src)})[Symbol.iterator]().map(async w=>(
 		w={
 			path:w,
 			...(
@@ -66,7 +66,6 @@ frag=await Promise.all(
 	))
 );
 
-await Bun.$`rm -rf ${root(dir.dst)}`;
 await Bun.write(
 	root(dir.dst,'index.html'),
 	new HTMLRewriter()
