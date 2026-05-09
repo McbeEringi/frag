@@ -75,3 +75,8 @@ await Bun.write(
 		)})
 		.transform(await Bun.file(root('index.tmpl.html')).text())
 );
+
+await Bun.write(
+	root(dir.dst,'../_redirects'),
+	'/ /frag/ 301'
+);

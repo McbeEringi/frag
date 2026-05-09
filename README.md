@@ -1,7 +1,5 @@
 # .frag
 
-`diary <= frag < blog`
+fragments of McbeEringi's memories.  More than diary, less than blog.
 
-McbeEringi's blog like articles
-
-日記以上ブログ未満  日々の知見の蓄積
+記憶の断片  日記以上ブログ未満
