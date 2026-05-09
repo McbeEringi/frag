@@ -71,7 +71,7 @@ await Bun.write(
 	root(dir.dst,'index.html'),
 	new HTMLRewriter()
 		.on('div.index',{element:e=>e.append(
-			`<ul>${frag.map(w=>`<li><a href="${w.path}">${w.title}</a></li>`).join('')}</ul>`,
+			`<ul>${frag.map(w=>`<li><a href="${w.path.replace(/\.md$/,'.html')}">${w.title}</a></li>`).join('')}</ul>`,
 			{html:1}
 		)})
 		.transform(await Bun.file(root('index.tmpl.html')).text())
