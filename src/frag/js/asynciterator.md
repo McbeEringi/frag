@@ -1,5 +1,3 @@
-#!/usr/bin/env -S bun --install=force
-
 ---
 mk: 2026-05-09
 mod: 2026-05-09
@@ -8,6 +6,8 @@ tag:
     - iterator
     - stream-api
     - bunjs
+
+draft: true
 ---
 
 # AsyncIterableと和解する

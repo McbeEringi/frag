@@ -1,9 +1,11 @@
 ---
-mk: 2016-05-09
-mod: 2016-05-09
+mk: 2026-05-09
+mod: 2026-05-09
 tag:
     - png
+    - binary
     - minify
+draft: true
 ---
 
 # PNGを小さくしたいとき
