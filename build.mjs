@@ -37,7 +37,7 @@ frag=await Promise.all(
 		)))(heading(1)),
 
 		w.html=new HTMLRewriter()
-			.on('div.md',{element:async(e,md)=>(
+			.on('main.md',{element:async(e,md)=>(
 				md=MarkdownItAsync(),
 				md.use(fromAsyncCodeToHtml(codeToHtml,{
 					themes:{
@@ -69,7 +69,7 @@ frag=await Promise.all(
 await Bun.write(
 	root(dir.dst,'index.html'),
 	new HTMLRewriter()
-		.on('div.index',{element:e=>e.append(
+		.on('nav.index',{element:e=>e.append(
 			`<ul>${frag.map(w=>`<li><a href="${w.path.replace(/\.md$/,'.html')}">${w.title}</a></li>`).join('')}</ul>`,
 			{html:1}
 		)})
