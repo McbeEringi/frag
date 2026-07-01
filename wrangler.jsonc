@@ -7,8 +7,8 @@
 		"watch_dir":["src","build.mjs","index.tmpl.html","frag.tmpl.html"]
 	},
 	"routes": [
-		{"pattern":"mcbeeringi.dev/frag/*","zone_name":"mcbeeringi.dev"},
-		{"pattern":"www.mcbeeringi.dev/frag/*","zone_name":"mcbeeringi.dev"}
+		{"pattern":"6ca.me/frag/*","zone_name":"6ca.me"},
+		{"pattern":"www.6ca.me/frag/*","zone_name":"6ca.me"}
 	],
 	"assets":{"directory":"./dst"}
 }
