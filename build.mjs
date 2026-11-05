@@ -20,7 +20,6 @@ heading=(n=1,m=n,{
 	`^${_i}(?<mark>#{${n},${m}})${_s}+${_h}$`,
 	...[...Array(m-n+1)].flatMap((x,i)=>(x='=-'[i+n-1])?[`^${_i}${_h}\r?\n${_i}(?<mark_alt>${x})+${_s}*$`]:[])
 ].join('|'),'mg'),
-tmpl=await Bun.file(root('frag.tmpl.html')).text(),
 frag=await Promise.all(
 	(await Bun.$`rm -rf ${root(dir.dst)}`,new Bun.Glob('**/*.md')).scanSync({cwd:root(dir.src)})[Symbol.iterator]().map(async w=>(
 		w={
@@ -36,7 +35,7 @@ frag=await Promise.all(
 			w.opening=(l=32)=>w.markdown.slice(r.lastIndex).replace(heading(1,6),'<$<heading>>:').replace(/(?:\r?\n)+/g,' ').slice(0,l-2).trim()+'……'
 		)))(heading(1)),
 
-		w.html=new HTMLRewriter()
+		w.html=await new HTMLRewriter()
 			.on('main.md',{element:async(e,md)=>(
 				md=MarkdownItAsync(),
 				md.use(fromAsyncCodeToHtml(codeToHtml,{
@@ -55,12 +54,12 @@ frag=await Promise.all(
 			.on('meta[name="description"]',{element:e=>e.setAttribute('content',w.front_matter?.desc??w.opening?.()??'あのイーハトーヴォのすきとおった風……')})
 			.on('meta[style]',{element:e=>e.replace(
 				[
-					'https://mcbeeringi.dev/src/shiki.css',
-					'https://mcbeeringi.dev/src/style.css'
+					'https://6ca.me/src/shiki.css',
+					'https://6ca.me/src/style.css'
 				].map(x=>`<link rel="stylesheet" href="${x}">`).join(''),
 				{html:1}
 			)})
-			.transform(tmpl),
+			.transform(new Response(await Bun.file(root('frag.tmpl.html')).stream())),
 		Bun.write(root(dir.dst,w.path.replace(/\.md$/,'.html')),w.html),
 		w
 	))
